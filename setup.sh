@@ -14,7 +14,7 @@ if [ -d "$INSTALL_DIR/.git" ]; then
   cd "$INSTALL_DIR" && git pull
 else
   git clone https://github.com/qudwad/my-website.git "$INSTALL_DIR"
-  cd "$INSTALL_DIR"
 fi
+cd "$INSTALL_DIR"
 bun install
 bun run dev
