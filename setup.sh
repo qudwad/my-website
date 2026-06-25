@@ -9,8 +9,12 @@ if ! command -v bun &>/dev/null; then
   export PATH="$HOME/.bun/bin:$PATH"
 fi
 
-rm -rf "$INSTALL_DIR"
-git clone https://github.com/qudwad/my-website.git "$INSTALL_DIR"
-cd "$INSTALL_DIR"
+mkdir -p "$INSTALL_DIR"
+if [ -d "$INSTALL_DIR/.git" ]; then
+  cd "$INSTALL_DIR" && git pull
+else
+  git clone https://github.com/qudwad/my-website.git "$INSTALL_DIR"
+  cd "$INSTALL_DIR"
+fi
 bun install
 bun run dev
